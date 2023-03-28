@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>state.paragraphs.amount</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@numberOfParagraphs@</string>
+		<key>numberOfParagraphs</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld Paragraph</string>
+			<key>other</key>
+			<string>%lld Paragraphs</string>
+			<key>zero</key>
+			<string>%lld Paragraphs</string>
+		</dict>
+	</dict>
+	<key>state.paragraphs.amount.without-number</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@numberOfParagraphs@</string>
+		<key>numberOfParagraphs</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>Paragraph</string>
+			<key>other</key>
+			<string>Paragraphs</string>
+			<key>zero</key>
+			<string>Paragraphs</string>
+		</dict>
+	</dict>
+	<key>state.words.amount</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@numberOfWords@</string>
+		<key>numberOfWords</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld Word</string>
+			<key>other</key>
+			<string>%lld Words</string>
+			<key>zero</key>
+			<string>%lld Words</string>
+		</dict>
+	</dict>
+	<key>state.words.amount.without-number</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@numberOfWords@</string>
+		<key>numberOfWords</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>Word</string>
+			<key>other</key>
+			<string>Words</string>
+			<key>zero</key>
+			<string>Words</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

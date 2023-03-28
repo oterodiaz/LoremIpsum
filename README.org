@@ -1,0 +1,16 @@
+#+title: Lorem Ipsum
+
+Generate the Lorem Ipsum placeholder text. Written in SwiftUI for macOS 13 Ventura and later.
+
+This application was inspired by [[https://apps.gnome.org/app/org.gnome.design.Lorem/][Lorem]] for Linux's GNOME desktop environment, as there were no alternatives for macOS. The text generation algorithm was inspired by [[https://blakewilliams.me/posts/generating-arbitrary-text-with-markov-chains-in-rust][this blog post]].
+
+#+attr_html: :alt "Lorem Ipsum screenshot"
+[[.screenshot.png]]
+
+* Installation
+You can find a precompiled universal binary for Intel and Apple Silicon Macs on the releases page. Alternatively, refer to the /Build/ section for instructions on how to compile it yourself.
+
+When you run the program for the first time, you might see a popup window saying that the app can't run because it wasn't signed by an identified developer. You can run it anyway by navigating to "System Settings.app -> Privacy and Security", scrolling towards the bottom and clicking "Allow Anyway" in the "Security" section.
+
+* Build
+You will need to have Xcode installed, which can be downloaded from [[https://apps.apple.com/es/app/xcode/id497799835][the Mac App Store]]. Lorem Ipsum uses no external libraries, so just clone this repository, open it with Xcode and compile it normally.

@@ -1,0 +1,5 @@
+/* Bundle name */
+"CFBundleName" = "Lorem Ipsum";
+
+/* Copyright (human-readable) */
+"NSHumanReadableCopyright" = "Copyright © 2023 Otero Díaz.\nAll rights reserved.";
