@@ -55,6 +55,14 @@ struct ContentView: View {
                 .help("Copy All")
 
                 Button() {
+                    state.generateText()
+                } label: {
+                    Label("Generate New Text", systemImage: "arrow.clockwise")
+                }
+                .help("Generate New Text")
+                .disabled(state.unit == .words && state.beginWithLoremIpsum && state.amount <= 17)
+
+                Button() {
                     state.showingPreferences.toggle()
                 } label: {
                     Label("Preferences", systemImage: "slider.horizontal.3")
