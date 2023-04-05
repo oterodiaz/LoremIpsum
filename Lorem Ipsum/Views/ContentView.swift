@@ -12,6 +12,7 @@ struct ContentView: View {
 
     @State private var opacity = 1.0
     @State private var textHeight: CGFloat = .zero
+    @State private var copyAllImageSystemName = "doc.on.doc"
 
     private var navigationTitle: String {
         String.localizedStringWithFormat("state.\(state.unit.name).amount".localized,
@@ -43,8 +44,13 @@ struct ContentView: View {
             ToolbarItemGroup(placement: .primaryAction) {
                 Button() {
                     state.copyText()
+
+                    copyAllImageSystemName = "checkmark"
+                    Timer.scheduledTimer(withTimeInterval: 0.75, repeats: false) { _ in
+                        copyAllImageSystemName = "doc.on.doc"
+                    }
                 } label: {
-                    Label("Copy All", systemImage: "doc.on.doc")
+                    Label("Copy All", systemImage: copyAllImageSystemName)
                 }
                 .help("Copy All")
 
