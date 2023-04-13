@@ -8,30 +8,31 @@
 import SwiftUI
 
 struct PreferencesView: View {
-    @EnvironmentObject var state: AppState
+    @EnvironmentObject var contentViewState: ContentViewState
     
     @FocusState private var isTextFieldFocused: Bool
+    @State private var timer: Timer?
 
     var body: some View {
         let stepperBinding = Binding(
-            get: { state.amount },
-            set: {
+            get: { contentViewState.lipsum.amount },
+            set: { newValue in
                 if isTextFieldFocused {
                     isTextFieldFocused = false
                 }
 
-                state.setAmountWithDelay(to: $0)
+                contentViewState.lipsum.amount = newValue
             }
         )
 
         let pickerBinding = Binding(
-            get: { state.unit },
-            set: {
+            get: { contentViewState.lipsum.unit },
+            set: { newValue in
                 if isTextFieldFocused {
                     isTextFieldFocused = false
                 }
 
-                state.unit = $0
+                contentViewState.lipsum.unit = newValue
             }
         )
 
@@ -39,7 +40,9 @@ struct PreferencesView: View {
             Form {
                 Section {
                     HStack {
-                        TextField("Length of the text:", value: $state.amount, format: .number)
+                        TextField("Length of the text:",
+                                  value: $contentViewState.lipsum.amount,
+                                  format: .number)
                             .textFieldStyle(.roundedBorder)
                             .monospacedDigit()
                             .focused($isTextFieldFocused)
@@ -48,15 +51,15 @@ struct PreferencesView: View {
 
                         Stepper("Length of the text:",
                                 value: stepperBinding,
-                                in: Unit.minAmount...Unit.maxAmount)
+                                in: LipsumGenerator.Unit.minAmount...LipsumGenerator.Unit.maxAmount)
 
                         Picker("Unit of measurement:", selection: pickerBinding) {
-                            ForEach(Unit.allCases, id: \.self) { unit in
+                            ForEach(LipsumGenerator.Unit.allCases, id: \.self) { unit in
                                 Text(
                                     String(
                                         format: "state.\(unit.name).amount.without-number"
                                             .localized,
-                                        state.amount
+                                        contentViewState.lipsum.amount
                                     )
                                 )
                             }
@@ -68,7 +71,8 @@ struct PreferencesView: View {
                 Divider()
 
                 Section() {
-                    Toggle("Begin with *Lorem ipsum*", isOn: $state.beginWithLoremIpsum)
+                    Toggle("Begin with *Lorem ipsum*",
+                           isOn: $contentViewState.lipsum.beginWithLoremIpsum)
                 }
             }
             .fixedSize()

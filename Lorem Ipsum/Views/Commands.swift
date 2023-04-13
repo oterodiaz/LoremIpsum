@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct NewItemCommandsView: View {
-    @EnvironmentObject var state: AppState
+    @EnvironmentObject var contentViewState: ContentViewState
 
     var body: some View {
         Button("Generate New Text") {
-            state.generateText()
+            contentViewState.regenerateText()
         }
         .keyboardShortcut("r")
-        .disabled(state.unit == .words && state.beginWithLoremIpsum && state.amount <= 17)
+        .disabled(contentViewState.regenerateTextDisabled)
     }
 }
 
@@ -24,16 +24,16 @@ struct PasteboardCommandsView: View {
 
     var body: some View {
         Button("Copy All") {
-            state.copyText()
+            state.contentViewState.copyText()
         }
         .keyboardShortcut("c", modifiers: [.command, .shift])
     }
 }
 
 struct SidebarCommandsView: View {
-    @EnvironmentObject var state: AppState
+    @EnvironmentObject var contentViewState: ContentViewState
 
-    private func pickerOptionLabel(for unit: Unit) -> String {
+    private func pickerOptionLabel(for unit: LipsumGenerator.Unit) -> String {
         switch unit {
         case .paragraphs:
             return String(localized: "Paragraphs",
@@ -45,7 +45,7 @@ struct SidebarCommandsView: View {
     }
 
     private func amountOfUnitsButtonLabel(increase: Bool) -> String {
-        switch (increase, state.unit) {
+        switch (increase, contentViewState.lipsum.unit) {
         case (true, .paragraphs):
             return String(localized: "Show More Paragraphs")
         case (true, .words):
@@ -59,18 +59,18 @@ struct SidebarCommandsView: View {
 
     var body: some View {
         Group {
-            Picker("Unit of Measurement", selection: $state.unit) {
-                ForEach(Unit.allCases, id: \.self) { unit in
+            Picker("Unit of Measurement", selection: $contentViewState.lipsum.unit) {
+                ForEach(LipsumGenerator.Unit.allCases, id: \.self) { unit in
                     Text(pickerOptionLabel(for: unit))
                 }
             }
 
             Button("Toggle Unit of Measurement") {
-                switch state.unit {
+                switch contentViewState.lipsum.unit {
                 case .paragraphs:
-                    state.unit = .words
+                    contentViewState.lipsum.unit = .words
                 case .words:
-                    state.unit = .paragraphs
+                    contentViewState.lipsum.unit = .paragraphs
                 }
             }
             .keyboardShortcut(.tab, modifiers: [.command, .control])
@@ -78,18 +78,18 @@ struct SidebarCommandsView: View {
             Divider()
 
             Button(amountOfUnitsButtonLabel(increase: true)) {
-                state.setAmountWithDelay(to: state.amount + 1)
+                contentViewState.lipsum.amount += 1
             }
             .keyboardShortcut("+")
-            .disabled(state.amount == Unit.maxAmount)
+            .disabled(contentViewState.lipsum.amount >= LipsumGenerator.Unit.maxAmount)
 
             Button(amountOfUnitsButtonLabel(increase: false)) {
-                state.setAmountWithDelay(to: state.amount - 1)
+                contentViewState.lipsum.amount -= 1
             }
             .keyboardShortcut("-")
-            .disabled(state.amount == Unit.minAmount)
+            .disabled(contentViewState.lipsum.amount <= LipsumGenerator.Unit.minAmount)
 
         }
-        .disabled(state.showingPreferences)
+        .disabled(contentViewState.showingPreferences)
     }
 }

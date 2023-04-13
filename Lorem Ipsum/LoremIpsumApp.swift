@@ -22,6 +22,7 @@ struct LoremIpsumApp: App {
         Window(appName, id: "main") {
             ContentView()
                 .environmentObject(state)
+                .environmentObject(state.contentViewState)
                 .onAppear {
                     NSWindow.allowsAutomaticWindowTabbing = false
                 }
@@ -30,7 +31,7 @@ struct LoremIpsumApp: App {
         .commands {
             CommandGroup(after: .newItem) {
                 NewItemCommandsView()
-                    .environmentObject(state)
+                    .environmentObject(state.contentViewState)
             }
 
             CommandGroup(after: .pasteboard) {
@@ -40,7 +41,7 @@ struct LoremIpsumApp: App {
 
             CommandGroup(after: .sidebar) {
                 SidebarCommandsView()
-                    .environmentObject(state)
+                    .environmentObject(state.contentViewState)
             }
 
             CommandGroup(replacing: .help, addition: {})

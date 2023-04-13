@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var state: AppState
+    @EnvironmentObject var contentViewState: ContentViewState
 
     @State private var opacity = 1.0
     @State private var textHeight: CGFloat = .zero
     @State private var copyAllImageSystemName = "doc.on.doc"
 
     private var navigationTitle: String {
-        String.localizedStringWithFormat("state.\(state.unit.name).amount".localized,
-                                         state.amount)
+        String.localizedStringWithFormat(
+            "state.\(contentViewState.lipsum.unit.name).amount".localized,
+            contentViewState.lipsum.amount
+        )
     }
 
     var body: some View {
@@ -25,12 +27,12 @@ struct ContentView: View {
                 HStack {
                     Spacer()
 
-                    TextView(text: .constant(state.text),
+                    TextView(text: .constant(contentViewState.text),
                              textHeight: $textHeight,
                              isEditable: false)
                     .frame(height: textHeight) // We need to tell the text size to the ScrollView
                     .frame(minWidth: 400, maxWidth: 550)
-                    .disabled(state.showingPreferences)
+                    .disabled(contentViewState.showingPreferences)
 
                     Spacer()
                 }
@@ -40,10 +42,18 @@ struct ContentView: View {
         .frame(minHeight: 350)
         .navigationTitle(navigationTitle)
         .opacity(opacity)
+        .onChange(of: contentViewState.lipsum) { _ in
+            contentViewState.timer?.invalidate()
+
+            contentViewState.timer = Timer
+                .scheduledTimer(withTimeInterval: 0.05, repeats: false) { _ in
+                    contentViewState.regenerateText()
+                }
+        }
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
                 Button() {
-                    state.copyText()
+                    contentViewState.copyText()
 
                     copyAllImageSystemName = "checkmark"
                     Timer.scheduledTimer(withTimeInterval: 0.75, repeats: false) { _ in
@@ -55,22 +65,22 @@ struct ContentView: View {
                 .help("Copy All")
 
                 Button() {
-                    state.generateText()
+                    contentViewState.regenerateText()
                 } label: {
                     Label("Generate New Text", systemImage: "arrow.clockwise")
                 }
                 .help("Generate New Text")
-                .disabled(state.unit == .words && state.beginWithLoremIpsum && state.amount <= 17)
+                .disabled(contentViewState.regenerateTextDisabled)
 
                 Button() {
-                    state.showingPreferences.toggle()
+                    contentViewState.showingPreferences.toggle()
                 } label: {
                     Label("Preferences", systemImage: "slider.horizontal.3")
                 }
                 .help("Preferences")
                 .keyboardShortcut(",")
-                .disabled(state.showingPreferences)
-                .popover(isPresented: $state.showingPreferences, arrowEdge: .bottom) {
+                .disabled(contentViewState.showingPreferences)
+                .popover(isPresented: $contentViewState.showingPreferences, arrowEdge: .bottom) {
                     PreferencesView()
                 }
             }
@@ -92,6 +102,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(AppState())
+            .environmentObject(ContentViewState())
     }
 }

@@ -8,12 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		F11C7CC729C7C2D3008C1486 /* StringLocalizedExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11C7CC629C7C2D2008C1486 /* StringLocalizedExtension.swift */; };
-		F11C7CC929C8CD53008C1486 /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11C7CC829C8CD53008C1486 /* Unit.swift */; };
 		F11C7CCB29C8F2DD008C1486 /* LipsumGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11C7CCA29C8F2DD008C1486 /* LipsumGenerator.swift */; };
 		F11C7CD329C9F21D008C1486 /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11C7CD229C9F21D008C1486 /* Commands.swift */; };
 		F11C7CE829CB2C6F008C1486 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = F11C7CEA29CB2C6F008C1486 /* Localizable.stringsdict */; };
 		F16C907829C47E2F00CE1EFC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F16C907A29C47E2F00CE1EFC /* Localizable.strings */; };
-		F17F01BA29C74D4000AA1711 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F01B929C74D4000AA1711 /* AppState.swift */; };
+		F17F01BA29C74D4000AA1711 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F01B929C74D4000AA1711 /* State.swift */; };
 		F1C8952329D2344B009B2537 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C8952229D2344B009B2537 /* TextView.swift */; };
 		F1C8952C29D25C9B009B2537 /* lorem-ipsum.txt in Resources */ = {isa = PBXBuildFile; fileRef = F1C8952B29D25C9B009B2537 /* lorem-ipsum.txt */; };
 		F1C8952E29D25CA6009B2537 /* liber-primus.txt in Resources */ = {isa = PBXBuildFile; fileRef = F1C8952D29D25CA6009B2537 /* liber-primus.txt */; };
@@ -28,14 +27,13 @@
 
 /* Begin PBXFileReference section */
 		F11C7CC629C7C2D2008C1486 /* StringLocalizedExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLocalizedExtension.swift; sourceTree = "<group>"; };
-		F11C7CC829C8CD53008C1486 /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
 		F11C7CCA29C8F2DD008C1486 /* LipsumGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LipsumGenerator.swift; sourceTree = "<group>"; };
 		F11C7CD229C9F21D008C1486 /* Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
 		F11C7CEC29CB5B32008C1486 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F11C7CED29CB5B3D008C1486 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F11D6EF929CBC8E600400AC6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		F11D6EFA29CBC90300400AC6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = es; path = es.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
-		F17F01B929C74D4000AA1711 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		F17F01B929C74D4000AA1711 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		F1C8952229D2344B009B2537 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		F1C8952B29D25C9B009B2537 /* lorem-ipsum.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "lorem-ipsum.txt"; sourceTree = "<group>"; };
 		F1C8952D29D25CA6009B2537 /* liber-primus.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "liber-primus.txt"; sourceTree = "<group>"; };
@@ -105,8 +103,7 @@
 				F1E6A4CD29C3AA32008C264B /* LoremIpsumApp.swift */,
 				F11C7CCF29C8F370008C1486 /* Views */,
 				F11C7CCE29C8F355008C1486 /* LipsumGenerator */,
-				F17F01B929C74D4000AA1711 /* AppState.swift */,
-				F11C7CC829C8CD53008C1486 /* Unit.swift */,
+				F17F01B929C74D4000AA1711 /* State.swift */,
 				F1C8952F29D25CF1009B2537 /* BundleExtension.swift */,
 				F11C7CC629C7C2D2008C1486 /* StringLocalizedExtension.swift */,
 				F1E6A4D129C3AA34008C264B /* Assets.xcassets */,
@@ -209,8 +206,7 @@
 				F11C7CCB29C8F2DD008C1486 /* LipsumGenerator.swift in Sources */,
 				F1E6A4DD29C3B3BE008C264B /* PreferencesView.swift in Sources */,
 				F11C7CC729C7C2D3008C1486 /* StringLocalizedExtension.swift in Sources */,
-				F11C7CC929C8CD53008C1486 /* Unit.swift in Sources */,
-				F17F01BA29C74D4000AA1711 /* AppState.swift in Sources */,
+				F17F01BA29C74D4000AA1711 /* State.swift in Sources */,
 				F11C7CD329C9F21D008C1486 /* Commands.swift in Sources */,
 				F1E6A4CE29C3AA32008C264B /* LoremIpsumApp.swift in Sources */,
 				F1C8952329D2344B009B2537 /* TextView.swift in Sources */,
@@ -391,7 +387,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.oterodiaz.LoremIpsum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -422,7 +418,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.oterodiaz.LoremIpsum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
