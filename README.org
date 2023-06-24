@@ -2,7 +2,7 @@
 
 Generate the Lorem Ipsum placeholder text. Written in SwiftUI for visionOS 1.0 and later.
 
-This application was inspired by [[https://apps.gnome.org/app/org.gnome.design.Lorem/][Lorem]] for Linux's GNOME desktop environment, as there were no alternatives for macOS. The text generation algorithm was inspired by [[https://blakewilliams.me/posts/generating-arbitrary-text-with-markov-chains-in-rust][this blog post]].
+This application was inspired by [[https://apps.gnome.org/app/org.gnome.design.Lorem/][Lorem]] for Linux's GNOME desktop environment, as there were no alternatives for visionOS. The text generation algorithm was inspired by [[https://blakewilliams.me/posts/generating-arbitrary-text-with-markov-chains-in-rust][this blog post]].
 
 #+attr_html: :alt "Lorem Ipsum screenshot"
 [[./screenshot.png]]
