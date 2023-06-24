@@ -9,11 +9,10 @@
 /* Begin PBXBuildFile section */
 		F11C7CC729C7C2D3008C1486 /* StringLocalizedExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11C7CC629C7C2D2008C1486 /* StringLocalizedExtension.swift */; };
 		F11C7CCB29C8F2DD008C1486 /* LipsumGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11C7CCA29C8F2DD008C1486 /* LipsumGenerator.swift */; };
-		F11C7CD329C9F21D008C1486 /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11C7CD229C9F21D008C1486 /* Commands.swift */; };
 		F11C7CE829CB2C6F008C1486 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = F11C7CEA29CB2C6F008C1486 /* Localizable.stringsdict */; };
 		F16C907829C47E2F00CE1EFC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F16C907A29C47E2F00CE1EFC /* Localizable.strings */; };
-		F17F01BA29C74D4000AA1711 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F01B929C74D4000AA1711 /* State.swift */; };
-		F1C8952329D2344B009B2537 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C8952229D2344B009B2537 /* TextView.swift */; };
+		F17F01BA29C74D4000AA1711 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F01B929C74D4000AA1711 /* AppState.swift */; };
+		F1ABFBDC2A45B20200CD7E81 /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11C7CD229C9F21D008C1486 /* Commands.swift */; };
 		F1C8952C29D25C9B009B2537 /* lorem-ipsum.txt in Resources */ = {isa = PBXBuildFile; fileRef = F1C8952B29D25C9B009B2537 /* lorem-ipsum.txt */; };
 		F1C8952E29D25CA6009B2537 /* liber-primus.txt in Resources */ = {isa = PBXBuildFile; fileRef = F1C8952D29D25CA6009B2537 /* liber-primus.txt */; };
 		F1C8953029D25CF1009B2537 /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C8952F29D25CF1009B2537 /* BundleExtension.swift */; };
@@ -23,6 +22,7 @@
 		F1E6A4D229C3AA34008C264B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1E6A4D129C3AA34008C264B /* Assets.xcassets */; };
 		F1E6A4D529C3AA34008C264B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1E6A4D429C3AA34008C264B /* Preview Assets.xcassets */; };
 		F1E6A4DD29C3B3BE008C264B /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E6A4DC29C3B3BE008C264B /* PreferencesView.swift */; };
+		F1E78EC22A43BF4D003E939E /* ContentView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E78EC12A43BF4D003E939E /* ContentView-ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +33,7 @@
 		F11C7CED29CB5B3D008C1486 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F11D6EF929CBC8E600400AC6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		F11D6EFA29CBC90300400AC6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = es; path = es.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
-		F17F01B929C74D4000AA1711 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		F1C8952229D2344B009B2537 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		F17F01B929C74D4000AA1711 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		F1C8952B29D25C9B009B2537 /* lorem-ipsum.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "lorem-ipsum.txt"; sourceTree = "<group>"; };
 		F1C8952D29D25CA6009B2537 /* liber-primus.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "liber-primus.txt"; sourceTree = "<group>"; };
 		F1C8952F29D25CF1009B2537 /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
@@ -47,6 +46,7 @@
 		F1E6A4D429C3AA34008C264B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F1E6A4D629C3AA34008C264B /* Lorem Ipsum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lorem Ipsum.entitlements"; sourceTree = "<group>"; };
 		F1E6A4DC29C3B3BE008C264B /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
+		F1E78EC12A43BF4D003E939E /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +76,6 @@
 				F1E6A4CF29C3AA32008C264B /* ContentView.swift */,
 				F1E6A4DC29C3B3BE008C264B /* PreferencesView.swift */,
 				F11C7CD229C9F21D008C1486 /* Commands.swift */,
-				F1C8952229D2344B009B2537 /* TextView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -103,7 +102,8 @@
 				F1E6A4CD29C3AA32008C264B /* LoremIpsumApp.swift */,
 				F11C7CCF29C8F370008C1486 /* Views */,
 				F11C7CCE29C8F355008C1486 /* LipsumGenerator */,
-				F17F01B929C74D4000AA1711 /* State.swift */,
+				F17F01B929C74D4000AA1711 /* AppState.swift */,
+				F1E78EC12A43BF4D003E939E /* ContentView-ViewModel.swift */,
 				F1C8952F29D25CF1009B2537 /* BundleExtension.swift */,
 				F11C7CC629C7C2D2008C1486 /* StringLocalizedExtension.swift */,
 				F1E6A4D129C3AA34008C264B /* Assets.xcassets */,
@@ -203,13 +203,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1E6A4D029C3AA32008C264B /* ContentView.swift in Sources */,
+				F1ABFBDC2A45B20200CD7E81 /* Commands.swift in Sources */,
 				F11C7CCB29C8F2DD008C1486 /* LipsumGenerator.swift in Sources */,
 				F1E6A4DD29C3B3BE008C264B /* PreferencesView.swift in Sources */,
 				F11C7CC729C7C2D3008C1486 /* StringLocalizedExtension.swift in Sources */,
-				F17F01BA29C74D4000AA1711 /* State.swift in Sources */,
-				F11C7CD329C9F21D008C1486 /* Commands.swift in Sources */,
+				F17F01BA29C74D4000AA1711 /* AppState.swift in Sources */,
 				F1E6A4CE29C3AA32008C264B /* LoremIpsumApp.swift in Sources */,
-				F1C8952329D2344B009B2537 /* TextView.swift in Sources */,
+				F1E78EC22A43BF4D003E939E /* ContentView-ViewModel.swift in Sources */,
 				F1C8953029D25CF1009B2537 /* BundleExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,6 +306,7 @@
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Debug;
 		};
@@ -361,6 +362,7 @@
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Release;
 		};
@@ -388,10 +390,15 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.oterodiaz.LoremIpsum;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oterodiaz.LoremIpsumV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 7;
 			};
 			name = Debug;
 		};
@@ -419,10 +426,15 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.oterodiaz.LoremIpsum;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oterodiaz.LoremIpsumV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 7;
 			};
 			name = Release;
 		};

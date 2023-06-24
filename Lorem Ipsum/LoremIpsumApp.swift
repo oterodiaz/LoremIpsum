@@ -9,42 +9,29 @@ import SwiftUI
 
 @main
 struct LoremIpsumApp: App {
-    @StateObject var state = AppState()
-    @AppStorage("NSFullScreenMenuItemEverywhere") var fullScreenEnabled = false
-
-    let appName = "Lorem Ipsum"
-
-    init() {
-         fullScreenEnabled = false
-    }
+    var appState = AppState()
 
     var body: some Scene {
-        Window(appName, id: "main") {
-            ContentView()
-                .environmentObject(state)
-                .environmentObject(state.contentViewState)
-                .onAppear {
-                    NSWindow.allowsAutomaticWindowTabbing = false
-                }
+        WindowGroup {
+            ContentView(viewModel: appState.contentViewModel)
+                .environment(appState)
+                .frame(minWidth: 400, minHeight: 400)
         }
-        .defaultSize(width: 550, height: 500)
         .commands {
             CommandGroup(after: .newItem) {
                 NewItemCommandsView()
-                    .environmentObject(state.contentViewState)
+                    .environment(appState)
             }
 
             CommandGroup(after: .pasteboard) {
                 PasteboardCommandsView()
-                    .environmentObject(state)
+                    .environment(appState)
             }
 
             CommandGroup(after: .sidebar) {
                 SidebarCommandsView()
-                    .environmentObject(state.contentViewState)
+                    .environment(appState)
             }
-
-            CommandGroup(replacing: .help, addition: {})
         }
     }
 }

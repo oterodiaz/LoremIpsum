@@ -8,100 +8,98 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var contentViewState: ContentViewState
+    var viewModel: ContentViewModel
 
-    @State private var opacity = 1.0
     @State private var textHeight: CGFloat = .zero
     @State private var copyAllImageSystemName = "doc.on.doc"
 
     private var navigationTitle: String {
         String.localizedStringWithFormat(
-            "state.\(contentViewState.lipsum.unit.name).amount".localized,
-            contentViewState.lipsum.amount
+            "state.\(viewModel.lipsum.unit.name).amount".localized,
+            viewModel.lipsum.amount
         )
     }
 
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                HStack {
-                    Spacer()
+        TabView {
+            NavigationStack {
+                ScrollView {
+                    VStack(spacing: 0) {
+                        HStack {
+                            Spacer()
+                            Text(verbatim: viewModel.text)
+                                .font(.system(.body, design: .serif))
+                                .textSelection(.enabled)
+                                .frame(minWidth: 400, maxWidth: 550)
 
-                    TextView(text: .constant(contentViewState.text),
-                             textHeight: $textHeight,
-                             isEditable: false)
-                    .frame(height: textHeight) // We need to tell the text size to the ScrollView
-                    .frame(minWidth: 400, maxWidth: 550)
-                    .disabled(contentViewState.showingPreferences)
-
-                    Spacer()
-                }
-                .padding(24)
-            }
-        }
-        .frame(minHeight: 350)
-        .navigationTitle(navigationTitle)
-        .opacity(opacity)
-        .onChange(of: contentViewState.lipsum) { _ in
-            contentViewState.timer?.invalidate()
-
-            contentViewState.timer = Timer
-                .scheduledTimer(withTimeInterval: 0.05, repeats: false) { _ in
-                    contentViewState.regenerateText()
-                }
-        }
-        .toolbar {
-            ToolbarItemGroup(placement: .primaryAction) {
-                Button() {
-                    contentViewState.copyText()
-
-                    copyAllImageSystemName = "checkmark"
-                    Timer.scheduledTimer(withTimeInterval: 0.75, repeats: false) { _ in
-                        copyAllImageSystemName = "doc.on.doc"
+                            Spacer()
+                        }
+                        .padding(.horizontal, 24)
+                        
+                        Spacer()
                     }
-                } label: {
-                    Label("Copy All", systemImage: copyAllImageSystemName)
                 }
-                .help("Copy All")
+                .animation(.default, value: viewModel.text)
+                .navigationTitle(navigationTitle)
+                .toolbar {
+                    ToolbarItemGroup(placement: .bottomOrnament) {
+                        Button {
+                            viewModel.lipsum.amount -= 1
+                        } label: {
+                            Label("Decrease", systemImage: "minus")
+                        }
+                        .help("Decrease")
+                        .disabled(viewModel.lipsum.amount <= LipsumGenerator.Unit.minAmount)
 
-                Button() {
-                    contentViewState.regenerateText()
-                } label: {
-                    Label("Generate New Text", systemImage: "arrow.clockwise")
-                }
-                .help("Generate New Text")
-                .disabled(contentViewState.regenerateTextDisabled)
+                        Button {
+                            switch viewModel.lipsum.unit {
+                            case .paragraphs:
+                                viewModel.lipsum.unit = .words
+                            case .words:
+                                viewModel.lipsum.unit = .paragraphs
+                            }
+                        } label: {
+                            Label("Toggle Unit", systemImage: "arrow.left.arrow.right")
+                        }
+                        .help("Toggle Unit")
 
-                Button() {
-                    contentViewState.showingPreferences.toggle()
-                } label: {
-                    Label("Preferences", systemImage: "slider.horizontal.3")
-                }
-                .help("Preferences")
-                .keyboardShortcut(",")
-                .disabled(contentViewState.showingPreferences)
-                .popover(isPresented: $contentViewState.showingPreferences, arrowEdge: .bottom) {
-                    PreferencesView()
+                        Button {
+                            viewModel.lipsum.amount += 1
+                        } label: {
+                            Label("Increase", systemImage: "plus")
+                        }
+                        .help("Increase")
+                        .disabled(viewModel.lipsum.amount >= LipsumGenerator.Unit.maxAmount)
+                    }
                 }
             }
+            .tabItem {
+                Label("Text Generator", systemImage: "text.alignleft")
+            }
+
+            NavigationStack {
+                PreferencesView(viewModel: viewModel)
+                    .navigationTitle("Settings")
+            }
+            .tabItem {
+                Label("Settings", systemImage: "gearshape")
+            }
         }
-        .onReceive(
-            NotificationCenter.default.publisher(
-                for: NSApplication.didBecomeActiveNotification)) { _ in
-                    self.opacity = 1.0
-        }
-        .onReceive(
-            NotificationCenter.default.publisher(
-                for: NSApplication.didResignActiveNotification)) { _ in
-                    self.opacity = 0.5
+        .onChange(of: viewModel.lipsum) {
+            viewModel.timer?.invalidate()
+
+            viewModel.timer = Timer
+                .scheduledTimer(withTimeInterval: 0.15, repeats: false) { _ in
+                    viewModel.regenerateText()
+                }
         }
     }
 }
 
 
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-            .environmentObject(ContentViewState())
+        ContentView(viewModel: ContentViewModel())
     }
 }

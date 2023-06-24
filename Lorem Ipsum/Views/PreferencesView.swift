@@ -8,86 +8,70 @@
 import SwiftUI
 
 struct PreferencesView: View {
-    @EnvironmentObject var contentViewState: ContentViewState
-    
+    @Bindable var viewModel: ContentViewModel
+
     @FocusState private var isTextFieldFocused: Bool
     @State private var timer: Timer?
 
     var body: some View {
-        let stepperBinding = Binding(
-            get: { contentViewState.lipsum.amount },
-            set: { newValue in
-                if isTextFieldFocused {
-                    isTextFieldFocused = false
-                }
-
-                contentViewState.lipsum.amount = newValue
-            }
-        )
-
-        let pickerBinding = Binding(
-            get: { contentViewState.lipsum.unit },
-            set: { newValue in
-                if isTextFieldFocused {
-                    isTextFieldFocused = false
-                }
-
-                contentViewState.lipsum.unit = newValue
-            }
-        )
-
-        return (
             Form {
-                Section {
+                Section("Text") {
                     HStack {
-                        TextField("Length of the text:",
-                                  value: $contentViewState.lipsum.amount,
-                                  format: .number)
-                            .textFieldStyle(.roundedBorder)
-                            .monospacedDigit()
-                            .focused($isTextFieldFocused)
-                            .onSubmit { isTextFieldFocused = false }
-                            .frame(width: 48)
+                        Text("Text length")
+                        Spacer()
 
-                        Stepper("Length of the text:",
-                                value: stepperBinding,
+                        Text(verbatim:
+                                String(format: "state.\(viewModel.lipsum.unit.name).amount"
+                                    .localized,
+                                viewModel.lipsum.amount)
+                            )
+
+                        Stepper("Text length",
+                                value: $viewModel.lipsum.amount,
                                 in: LipsumGenerator.Unit.minAmount...LipsumGenerator.Unit.maxAmount)
+                        .onTapGesture {
+                            isTextFieldFocused = false
+                        }
+                        .labelsHidden()
+                    }
 
-                        Picker("Unit of measurement:", selection: pickerBinding) {
-                            ForEach(LipsumGenerator.Unit.allCases, id: \.self) { unit in
-                                Text(
-                                    String(
-                                        format: "state.\(unit.name).amount.without-number"
-                                            .localized,
-                                        contentViewState.lipsum.amount
-                                    )
-                                )
+                    Toggle("Start with Lorem ipsum",
+                           isOn: $viewModel.lipsum.beginWithLoremIpsum)
+                }
+
+                Section("Unit") {
+                    Picker("Unit of measurement:", selection: $viewModel.lipsum.unit) {
+                        ForEach(LipsumGenerator.Unit.allCases, id: \.self) { unit in
+                            switch unit {
+                            case .words:
+                                Text("Words")
+                            case .paragraphs:
+                                Text("Paragraphs")
                             }
+//                            Text(
+//                                String(
+//                                    format: "state.\(unit.name).amount.without-number"
+//                                        .localized,
+//                                    viewModel.lipsum.amount
+//                                )
+//                            )
                         }
                     }
+                    .pickerStyle(.inline)
                     .labelsHidden()
                 }
-
-                Divider()
-
-                Section() {
-                    Toggle("Begin with *Lorem ipsum*",
-                           isOn: $contentViewState.lipsum.beginWithLoremIpsum)
-                }
             }
-            .fixedSize()
-            .padding()
-            .contentShape(Rectangle()) // Needed for onTapGesture to work
-            .onTapGesture {
-                isTextFieldFocused = false
-            }
-        )
+
+//            .fixedSize()
+//            .contentShape(Rectangle()) // Needed for onTapGesture to work
+//            .onTapGesture {
+//                isTextFieldFocused = false
+//            }
     }
 }
 
 struct PreferencesView_Previews: PreviewProvider {
     static var previews: some View {
-        PreferencesView()
-            .environmentObject(AppState())
+        PreferencesView(viewModel: ContentViewModel())
     }
 }
